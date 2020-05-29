@@ -7,7 +7,9 @@ import api from './services/api';
 function App() {
   
   function getRequest() {
-    api.get('/jokes/random');
+    api.get('/jokes/random').then(response => {
+      console.log(response)
+  })
   }
 
 
