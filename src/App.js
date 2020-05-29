@@ -1,8 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import aṕi from './services/api'
+import api from './services/api';
 
 function App() {
+  
+  function getRequest() {
+    api.get('/jokes/random');
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -11,6 +19,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <h1>Primeiro app em react</h1>
+        <button onClick={() => getRequest()}>
+          CLica aqui para fazer a requisição
+        </button>
         <a
           className="App-link"
           href="https://reactjs.org"
