@@ -20,14 +20,17 @@ class App extends Component {
       return (
         <div className="App">
         <h1>Marvel Heroes</h1>
+          <div className="card-columns">
        {
          this.state.heroes.map((hero) => (
-           <Card 
-           key ={hero.id}
-             hero= {hero}
-           />
+            <Card 
+            key ={hero.id}
+              hero= {hero}
+            />
          ))
        }
+          </div>
+
      </div>
       );
     }
