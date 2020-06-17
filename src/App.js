@@ -1,40 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
-import aṕi from './services/api'
 import api from './services/api';
+import Card from './components/card'
 
-function App() {
-  
-  function getRequest() {
-    api.get('/jokes/random').then(response => {
-      console.log(response)
-  })
+class App extends Component {
+  state = {
+    heroes: []
   }
 
+  componentDidMount() {
+    api.get().then(response => {
+        console.log(response)
+        const data = response.data.data.results;
+        this.setState({heroes: data})
+    })
+  }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>Primeiro app em react</h1>
-        <button onClick={() => getRequest()}>
-          CLica aqui para fazer a requisição
-        </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    render() {
+      return (
+        <div className="App">
+        <h1>Marvel Heroes</h1>
+       {
+         this.state.heroes.map((hero) => (
+           <Card 
+           key ={hero.id}
+             hero= {hero}
+           />
+         ))
+       }
+     </div>
+      );
+    }
 }
+
 
 export default App;
